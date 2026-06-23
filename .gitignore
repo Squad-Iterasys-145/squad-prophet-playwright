@@ -1,0 +1,18 @@
+# Dependências
+node_modules/
+
+# Relatórios
+playwright-report/
+test-results/
+blob-report/
+
+# Cache do Playwright
+/playwright/.cache/
+
+# Arquivos locais
+.env
+
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
