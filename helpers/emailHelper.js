@@ -43,34 +43,34 @@ async function getMagicLink(email, password) {
         const subject = parsed.subject || '';
         const body = parsed.html || parsed.text || '';
 
-        // 🔥 filtra Prophet
+        // filtra Prophet
         if (!subject.toLowerCase().includes('prophet') &&
             !body.toLowerCase().includes('prophet')) {
             console.log('⏭ ignorando email não Prophet');
             continue;
         }
 
-        console.log('📩 email Prophet encontrado');
+        console.log('email Prophet encontrado');
 
-        // 🔥 extrai link do botão
+        // extrai link do botão
         let match =
             body.match(/href="(https:\/\/prophet\.build[^"]+)"/) ||
             body.match(/https:\/\/prophet\.build\/auth\/confirm[^\s"'<>]+/);
 
         if (match) {
             magicLink = match[1] || match[0];
-            console.log('🔗 magic link capturado');
+            console.log('magic link capturado');
             break;
         }
 
-        console.log('⏳ tentando novamente...');
+        console.log('tentando novamente...');
         await new Promise(r => setTimeout(r, 3000));
     }
 
     await connection.end();
 
     if (!magicLink) {
-        throw new Error('❌ Magic link não encontrado');
+        throw new Error('Magic link não encontrado');
     }
 
     return magicLink;
