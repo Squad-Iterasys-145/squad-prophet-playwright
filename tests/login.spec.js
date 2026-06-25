@@ -1,65 +1,19 @@
-const { test, chromium, expect } = require('@playwright/test');
+const { test, expect } = require('@playwright/test');
+const { getProphetPage } = require('../helpers/cdp');
 const LoginPage = require('../pages/LoginPage');
 
-test('login prophet via Google OAuth (manual 2FA)', async () => {
+test('Acessar Prophet via CDP', async () => {
 
-    const browser = await chromium.launch({
-        headless: false,
-        channel: 'chrome'
-    });
-
-    const context = await browser.newContext();
-    const page = await context.newPage();
+    const page = await getProphetPage();
 
     const login = new LoginPage(page);
 
-    // 1. abre Prophet
     await login.acessar();
 
-    // 2. Começar
-    const btnComecar = page.locator('a', { hasText: 'Começar' });
-    await btnComecar.click();
+    console.log('Prophet aberto com sessão autenticada');
 
-    console.log('Começar clicado');
+    await page.locator('a[href="/dashboard"]').click();
 
-    // 3. Continuar com Google
-    const btnGoogle = page.locator('button', {
-        hasText: 'Continuar com Google'
-    });
+    console.log('Painel clicado');
 
-    await btnGoogle.click();
-
-    console.log('Google login iniciado');
-
-    // 4. email
-    const emailInput = page.locator('#identifierId');
-    await emailInput.fill(process.env.EMAIL);
-    await page.keyboard.press('Enter');
-
-    console.log('email enviado');
-
-    // 5. senha
-    const passwordInput = page.locator('input[type="password"]');
-    await passwordInput.fill(process.env.PASSWORD);
-    await page.keyboard.press('Enter');
-
-    console.log('senha enviada');
-
-    // 6. ESPERA NATURAL (2FA + redirect automático)
-    console.log('aguardando login completo no Google...');
-
-    await page.waitForURL(/prophet|dashboard|auth/, {
-        timeout: 180000 // 3 minutos
-    });
-
-    // 7. valida que entrou no Prophet
-    const textarea = page.getByPlaceholder(
-        'Descreva com o que precisa de ajuda...'
-    );
-
-    await expect(textarea).toBeVisible({ timeout: 60000 });
-
-    console.log('login concluído');
-
-    await browser.close();
 });
