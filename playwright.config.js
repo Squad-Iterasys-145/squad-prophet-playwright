@@ -1,4 +1,5 @@
 const { defineConfig, devices } = require('@playwright/test');
+require('dotenv').config(); 
 
 module.exports = defineConfig({
   testDir: './tests',
@@ -21,7 +22,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
         channel: 'chrome'
       },
