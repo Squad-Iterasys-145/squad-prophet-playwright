@@ -17,6 +17,10 @@ class SidebarPage {
     async expandirBarra() {
         await this.expandirsidebar.click();
     }
+
+    async clicarAgentes() {
+        await this.agentes.click()
+    }
 }
 
 
