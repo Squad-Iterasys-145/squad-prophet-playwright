@@ -10,6 +10,10 @@ class ChatPage {
 
         // ✔ evita pegar chat errado
         this.textarea = page.locator('textarea[data-slot="textarea"]').first();
+
+        //Mapeamento Diego
+        this.chatinicial = page.getByPlaceholder('Descreva com o que precisa de ajuda...');
+        this.btnenviar = page.locator('button[type="submit"]');
     }
 
     async abrirChat() {
@@ -60,7 +64,18 @@ class ChatPage {
     await sair.click();
 
     console.log('Logout realizado com sucesso');
-}
+    }
+
+    //Funções Diego
+    async digitarTexto(texto){
+        await this.chatinicial.fill(texto);
+    }
+
+    async enviarMensagem() {
+        await expect(this.btnenviar).toBeEnabled();
+        await this.btnenviar.click();
+    }
+
 }
 
 module.exports = ChatPage;
