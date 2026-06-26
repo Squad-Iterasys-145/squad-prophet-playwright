@@ -21,6 +21,10 @@ class AgentesPage {
         await this.adicionarworkers.click();
     }
 
+    async gerenciarAutomacao() {
+        await this.gerenciarautomacoes.click();
+    }
+
     async criarNovo() {
         await this.createnew.click();
     }
