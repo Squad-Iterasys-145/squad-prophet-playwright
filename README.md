@@ -152,5 +152,3 @@ develop → PR para main → deploy / entrega de sprint
 * **Plataforma:** Prophet Web Automation Framework
 * **Tecnologia Base:** Playwright Automation Server (CDP Mode)
 """
-
-```
