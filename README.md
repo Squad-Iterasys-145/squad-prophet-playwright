@@ -32,6 +32,7 @@ prophet-automation/
     ├── agents.spec.js           # Testes de criação de automações e inicialização de Workers
     ├── chat.spec.js             # Testes de prompts de IA e validação de fluxos de marketing
     ├── chatWorker.spec.js       # Testes de automação para Monitorar notícias de Marketing & Publicidade
+    ├── chatWorkerEvent.spec.js  # Testes de automação para cadastro automático de leads (Outlook + CRM)
     ├── enviar_resumo.spec.js    # Testes de requisição de análise e envio de sumários por e-mail
     ├── excluir_trigger.spec.js  # Testes de deleção de agendamentos dentro de agentes
     ├── login.spec.js            # Validação de acesso à plataforma via sessão CDP ativa
